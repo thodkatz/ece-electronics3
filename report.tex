@@ -1,0 +1,79 @@
+% !TEX program = xelatex
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+
+\usepackage[hidelinks, colorlinks = true, linkcolor = black, urlcolor = blue]{hyperref}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{lipsum}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{dirtytalk}
+
+\title{\textbf{Ηλεκτρονική 3} \\ \textbf{Εργασία Τελεστικού Ενισχυτή}}
+\author{Θεόδωρος Κατζάλης \\ ΑΕΜ:9282 \\ katzalis@auth.gr}
+\date{12 Ιανουάριου 2020}
+
+
+\begin{document}
+	
+	\maketitle
+	\sloppy
+	\tableofcontents
+	\pagebreak
+	
+	\section{Εισαγωγή}
+	
+	Ο τελεστικός ενισχυτής που θα επιχειρήσουμε να σχεδίασουμε θα έχει είσοδο ΝMOS. Αξίζει βέβαια να σημειωθεί ότι συνήθως προτιμάται η χρήση PMOS εισόδου για ...
+	
+	Ο τελεστικός είναι πάντα 2 βαθμίδων; Γιατί χρησιμοποιήσες nmos, πότε το ένα, πότε το άλλο.
+	
+	\section{Αρχικές Συνθήκες}
+	
+	%\vspace{1cm}
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			Προδιαγραφές & AEM=9282  \\
+			\hline
+			\textbf{CL} & 724 \\
+			\hline
+			\textbf{SR} & >709 \\
+			\hline
+			\textbf{Vdd} & 778 \\
+			\hline
+			\textbf{Vss} & -493 \\
+			\hline
+			\textbf{GB} & >493 \\
+			\hline
+			\textbf{A} & ?493 \\
+			\hline
+			\textbf{P} & 493 \\
+			\hline
+		\end{tabular}
+		%\caption{Δείγματα Ιρλανδίας, Δείγμα Α}
+	\end{table}
+	
+	\section{Περιγραφή αλγορίθμου}
+	
+	Ακολουθώντας τα βήματα του αλγορίθμου σχεδίασης τελεστικού ενισχυτή έχουμε τα εξής:
+	\begin{enumerate}
+		\item Επιλογή τιμής L (μήκος καναλιού). 
+		
+		Η τεχνολογία κατασκευής υποδηλώνει το ελάχιστο δυνατό μήκος καναλιού που μπορούμε να χρησιμποποιήσουμε στην σχεδίαση μας και συνήθως επιλέγονται τιμές 1,5 ή 2 φορές αυτής της τιμής. Δεν μπορούμε βέβαια να χρησιμοποιήσουμε κάτι μικρότερο απο 0.35u. Για λόγους ευκολίας χρησιμοποιούμε την μονάδα.
+		
+		% Μatlab code here
+		
+		\item Καθορισμός επιλογής χωρητικότητας Miller. Για λόγους ευστάθειας
+		
+		Προκύπτει . Επιλέγουμε.
+		
+		\item
+	\end{enumerate}
+\end{document}
