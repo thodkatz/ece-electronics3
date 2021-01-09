@@ -94,6 +94,7 @@ if Vds5 < 0.1
     fprintf("Vds: %f\nPick a bigger value for Vds5\n", Vds5);
 end
 S5 = (2*I5)/(Kp*(Vds5)^2)
+S5 = ceil(S5)
 
 % Step 8
 gm6 = 2.2*gm2*(CL/Cc)
@@ -103,6 +104,7 @@ end
 I4 = I3;
 gm4 = sqrt(2*Kp*S4*I4)
 S6  = S4*(gm6/gm4)
+S6 = ceil(S6)
 
 % Do we have vout max spec? No
 % Step 9
@@ -113,9 +115,10 @@ S6  = S4*(gm6/gm4)
 I6   = gm6^2/(2*Kp*S6)
 
 % Step 10
-S7   = (I6/I5)*S5;
-b7   = S7 * Kn;
-I7   = I6;
+S7 = (I6/I5)*S5;
+S7 = ceil(S7)  
+b7 = S7 * Kn;
+I7 = I6;
 %Vds7 = sqrt((2*I7)/b7) - Vtp;
 %fprintf("Vds7: %f and Vout: %f\n", Vds7, Vout);
 %assert(Vds7 < Vout);
