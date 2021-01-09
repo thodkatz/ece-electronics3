@@ -1,0 +1,32 @@
+- DB(V(M7:d)/V(Vin:+))
+- P(V(M7:d)/V(Vin:+))
+- MAX(D(V(M7:d)))
+
+
+# sf le (0) 
+search command cursor spice
+
+# Τuning
+
+## Slew rate
+Increasing the ratio W/L of the M8,M5, increase the slew rate. The L is 1um, so we change only the w.
+Increasing the current I5 also increase the slew rate. But the previous has significant impact.
+You need to keep in mind though, that the Ibias should be not very high because then the gain will be lower.
+So probably the best option is to play with the ratio of the M8, M5. What about m7? Nothing regarding slew rate
+
+For W = 5u and L=1u, we have around 22 in the slew rate and Iac = 15u. We can probably increase it more either the W or the Iref. But we need to ensure that it doesnt conflict with others.
+
+Μιας και τον σημαντικότερο ρόλο παίζουν τα Μ8, Μ5 για το slew rate, έχω την εντύπωση ότι τα Ι1,2,3,4 είναι αυτά που επηρεάζουν το slew rate.
+
+# Gain
+
+M!, M2, increase the L and at the same the time the ratio W/L. This will result to increase the gain. I tried to change ht M8,M5 ratio but gain didnt change, current source too.
+
+Increasing the aforementioned in the slew rate didnt change the gain!
+
+Lowering the W of M7, increased the gain too. Αυτό παίζει και να βοήθησε το slew rate να βελτιωθεί. Μπα πολυ λιγο. O Cc έκανε την δουλειά. Άρα για slew rate έχουμε Μ8,5, πηγή ρεύματος και πυκνωτής. Ο πυκνωτής το phase margin. Τα Μ1,2 και Μ7 το gain.
+
+## Phase margin
+
+1pf -> 0.7 pF, lead us to -119 when zero db. This is 60 phase margin!
+
