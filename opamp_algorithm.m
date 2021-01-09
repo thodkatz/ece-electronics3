@@ -127,11 +127,13 @@ I7 = I6;
 Av = (2*gm2*gm6)/(I5*(Ln + Lp) * I6*(Ln + Lp));
 Pd = (I5 + I6)*(Vdd + abs(Vss));
 
-fprintf("Gain: %f\nGoal: %f\n", Av, A);
+fprintf("Gain: %f, %fdB\nGoal: %f\n", Av, mag2db(Av), A);
+fprintf("Power dissipation: %f. Goal: %f\n", Pd*1e3, P);
+
 if (mag2db(Av) < A)
     fprintf("You need to increase the gain\n");
 elseif (Pd *1e3 > P)
-    fprintf("Power dissipation: %f. Goal: %f\nYou need to decrease the power dissipation\n", Pd, P);
+    fprintf("You need to decrease the power dissipation\n");
 end
 
 %um

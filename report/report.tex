@@ -43,19 +43,19 @@
 	\hline
 	Προδιαγραφές & AEM=9282  \\
 	\hline
-	\textbf{CL} & 724 \\
+	\textbf{CL} & 2.82 (pF) \\
 	\hline
-	\textbf{SR} & >709 \\
+	\textbf{SR} &  18.82 (V/μs)\\
 	\hline
-	\textbf{Vdd} & 778 \\
+	\textbf{Vdd} & 2.046 (V) \\
 	\hline
-	\textbf{Vss} & -493 \\
+	\textbf{Vss} & -2.046 (V)\\
 	\hline
-	\textbf{GB} & >493 \\
+	\textbf{GB} & 7.82 (MHz)\\
     \hline
-    \textbf{A} & ?493 \\
+    \textbf{A} & 20.82 (dB)\\
     \hline
-    \textbf{P} & 493 \\
+    \textbf{P} & 50.82 (mW)\\
     \hline
 \end{tabular}
 %\caption{}
@@ -109,7 +109,7 @@
 
 \section{Προσομοίωση SPICE}
 
-Χρησιμοποιήσαμε για NMOS και PMOS τα μοντέλα mbreakN3 και mbreakP3 αντίστοιχα ($V_{SB} = 0$).
+Χρησιμοποιήσαμε για NMOS και PMOS τα μοντέλα mbreakN3 και mbreakP3 αντίστοιχα ($V_{SB} = 0$) και θέσαμε τις απαιτούμενες τιμές του κυκλώματος με αυτές του αλγρορίθμου. Μια πρώτη παρατήρηση σχετικά με τα ρεύματα είναι ότι $I_1 = I_2 = I_3 = I_4 = 10.19 \approx I_{ref}/2 = 9.94u$, η τιμής του αλγορίθμου. Βέβαια έχουμε μεγάλη απόκλιση για τα $I_6 = I_7 \approx 300u$, $50\%$ αύξηση. Θεωρούμε ότι ο αλγόριθμος μας είναι σωστός και συνεχίζουμε να δούμε αν καλύπτονται οι προδιαγραφές ή κατα πόσο αποκλίνουν.
 
 \begin{figure}[h!]
 	\centering
@@ -119,10 +119,80 @@
 
 \subsection{Έλεγχος προδιαγραφών}
 
-Για να βρούμε το κέρδος τάσης και το εύρος κέρδους, κάνουμε AC sweep βάζοντας τον marker στην έξοδο, αλλά εμείς θέλουμε λόγο εξόδου με εισόδου, οπότε ο marker όμως δεν δείχνει μόνο τάση εξόδου εκεί που τον έβαλες; Άρα ίσως και να μην θέλει marker και έπειτα να βάλεις trace Ι guess. Προσθέτουμε και την γωνία του κέρδους για να αποφανθούμε σχετικά με το περιθώριο φάσης.
+Για τις ακόλουθες δύο προδιαγραφές κάνουμε AC sweep και προσθέτουμε τα κατάλληλα traces.
 
+\subsubsection{A και GB}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth, height = .25\textheight, keepaspectratio]{assets/gain_GB.png}
+	%\caption{Κύκλωμα προσομοίωσης τελεστικού ενισχυτή}
+\end{figure}
+
+Βλέπουμε ότι έχουμε total dc gain ίσο με 24dB (327.21), το οποίο αποκίνει απο την θεωρητική τιμή (50dB), ωστόσο είναι πάνω απο την προδιαγραφή των 20.82dB.
+
+Για να υπολογίσουμε το GB, βρίσκουμε την συχνότητα για την οποία το κέρδος έχει μειωθεί κατα 3dB. 'Οπως φαίνεται και απο το Probe Cursor, η τιμή της συχνότητας που αντιστοιχεί στα 21 dB είναι 363ΚHz. Συνεπώς:
+
+\[  GB = \abs{A} \cdot f_H = 326.21 \cdot 363KHz \approx 118 > 7.82 MHz \]
+
+Πληρείται δηλαδή και η προδιαγραφή για το Gain Bandwidth.
+
+\subsubsection{Περιθώριο φάσης}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth, height = .25\textheight, keepaspectratio]{assets/phase_margin.png}
+	%\caption{Κύκλωμα προσομοίωσης τελεστικού ενισχυτή}
+\end{figure}
+
+Βλέπουμε ότι για 0 dB κέρδους, η τιμή της φάσης αντιστοιχεί σε $-99^o$. Οπότε έχουμε περιθώριο φάσης $180 - 99 = 91^ο$. Θα προσπαθήσουμε στη συνέχεια να το φτάσουμε κοντά στο 60. 
+
+\subsubsection{Slew rate}
+
+Μετατρέπουμε την συνδεσμολογία σε συνδεσμολογία μοναδιαίου κέρδους βραχυκυκλώνοντας την αναστρέφουσα είσοδο με την έξοδο. Αλλάζουμε και την πηγή και έχουμε ως είσοδο τετραγωνικούς παλμούς διάρκειας δες τοπικ 2018 και 2017 για τους χρόνους και τα σχετικά.
+
+
+
+\begin{figure}[h!]
+     \begin{subfigure}[b]{0.5\textwidth}
+         \centering
+         \includegraphics[height=.4\textheight, width=\textwidth, keepaspectratio]{assets/slew_rate_circuit.png}
+    \caption{V3 binary search}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.5\textwidth}
+         \centering
+         \includegraphics[height=.4\textheight, width=\textwidth, keepaspectratio]{assets/slew_rate.png}
+         \caption{V4 linear search} 
+     \end{subfigure}
+\end{figure}
+
+Βρίσκουμε $18.441  \approx 18.82 MV/sec (V/μs)$. Δηλαδή για πολύ λίγο δεν πιάνουμε την προδιαγραφή.
 
 \section{Tuning}
 
+Όπως είδαμε προηφουμένως, οι τιμές για το περιθώριο φάσης και του ρυθμού ανόδου (slew rate) δεν ικανοποιούν τις προδιαγραφές. Παράλληλα θα προσπαθήσουμε να ενισχύσουμε και το κέρδος τάσης. Με βάση το ακόλουθο πινακάκι και παραμετρικές αναλύσεις καταλήξαμε στα εξής:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width = \textwidth, height = .2\textheight, keepaspectratio]{assets/tuning_table.png}
+	%\caption{Κύκλωμα προσομοίωσης τελεστικού ενισχυτή}
+\end{figure}
+
+\subsection{Α και GB}
+
+\subsection{Phase margin}
+
+\subsection{Slew rate}
+
+
+%Μάλλον το ΑΕΜ και  η προσεκτική γραφή του αλγορίθμου, συνυπολογίζοντας συνθήκες όπως $g_{m6} \geq 10 \cdot g_{m1}$ και στρογγυλοποιώντας τους λόγους, οδηγηθήκαμε στο να μην χρειάζεται να κάνουμε tuning. Ωστόσο αξίζει να σημειωθεί ότι υπάρχει ένα πολύ βοηθητικό πινακάκι το οποίο ενδεχομένως θα μπορούσαμε να το χρησιμοποιήσουμε για να μεταβάλλουμε τις τιμές. Ενδεικτικά θα προσπαθήσουμε για παράδειγμα να αυξηθεί το κέρδος. 
+
+%Φυσικά στο tuning θα πρέπει να μεταβάλουμε τα W με προσεκτικό τρόπο και να μην ξεχνάμε ότι υπάρχουν καθρέπτες ρεύματος για τους οποίους οι λόγοι θα πρέπει να είναι ταιριασμένοι.
+
+\section{Παραμετρική ανάλυση θερμοκρασίας}
+
+Απο 0-70.
+
+\subsection{Πηγή widlar}
 
 \end{document}
