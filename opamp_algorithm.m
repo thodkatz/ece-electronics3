@@ -10,13 +10,13 @@ Vss = -Vdd;            % V
 GB = 7 + 0.01*AEM;     % MHz
 A = 20 + 0.01*AEM;     % dB
 P = 50 + 0.01*AEM;     % mW
-fprintf("CL: %f\nSP: %f\nVdd: %f\nVss: %f\n", CL, SR, Vdd, Vss);
+fprintf("CL: %f\nSR: %f\nVdd: %f\nVss: %f\n", CL, SR, Vdd, Vss);
 fprintf("GB: %f\nA: %f\nP: %f\n", GB, A, P);
 fprintf("\n")
 
 % Vin
-Vin_max  = 100e-3
-Vin_min = -100e-3
+Vin_max  = 100e-3;
+Vin_min = -100e-3;
 
 % constants
 Eox = 3.45e-11;
@@ -56,7 +56,7 @@ fprintf("L: %fm, %fum\n\n", L, L*1e6);
 
 % Step 2
 Cc = 0.22*CL; %pF
-Cc = ceil(Cc)
+Cc = ceil(Cc);
 
 % Step 3
 I5 = SR*Cc * 1e-6; %Ampere
@@ -72,39 +72,39 @@ S4 = S3;
 fprintf("S3 and S4: %f\n\n", S3)
 
 % Step 5
-I3 = I5/2
-gm3  = sqrt(2 * Kp * S3 * I3)
-W3 = S3 * L
-Cgs3 = 2 * 0.667 * W3 * L * Coxp
+I3 = I5/2;
+gm3  = sqrt(2 * Kp * S3 * I3);
+W3 = S3 * L;
+Cgs3 = 2 * 0.667 * W3 * L * Coxp;
 p3   = gm3/(2*Cgs3); 
 fprintf("P3: %fMHz\n", (p3/(2*pi))*1e-6)
 assert(p3/(2*pi) > 10*GB);
 
 % Step 6
-gm1 = GB*1e6 * 2*pi * Cc * 1e-12 %uS
+gm1 = GB*1e6 * 2*pi * Cc * 1e-12; %uS
 gm2 = gm1; % CMOS
-S1  = gm1^2/(Kn * I5)
-S1  = ceil(S1)
+S1  = gm1^2/(Kn * I5);
+S1  = ceil(S1);
 S2  = S1;
 
 % Step 7
-b1   = S1*Kn
-Vds5 = Vin_min - Vss - sqrt(I5/b1) - Vtn
+b1   = S1*Kn;
+Vds5 = Vin_min - Vss - sqrt(I5/b1) - Vtn;
 if Vds5 < 0.1
     fprintf("Vds: %f\nPick a bigger value for Vds5\n", Vds5);
 end
-S5 = (2*I5)/(Kp*(Vds5)^2)
-S5 = ceil(S5)
+S5 = (2*I5)/(Kp*(Vds5)^2);
+S5 = ceil(S5); % try to unceil this, then S6 != S7
 
 % Step 8
-gm6 = 2.2*gm2*(CL/Cc)
+gm6 = 2.2*gm2*(CL/Cc);
 if (gm6 < 10*gm1)
-   gm6 = 10*gm1
+   gm6 = 10*gm1;
 end
 I4 = I3;
-gm4 = sqrt(2*Kp*S4*I4)
-S6  = S4*(gm6/gm4)
-S6 = ceil(S6)
+gm4 = sqrt(2*Kp*S4*I4);
+S6  = S4*(gm6/gm4);
+S6 = ceil(S6);
 
 % Do we have vout max spec? No
 % Step 9
@@ -112,11 +112,11 @@ S6 = ceil(S6)
 %temp = gm6/(Kp*Vds6)
 %S6   = max(S6, temp)
 
-I6   = gm6^2/(2*Kp*S6)
+I6 = (gm6^2)/(2*Kp*S6);
 
 % Step 10
 S7 = (I6/I5)*S5;
-S7 = ceil(S7)  
+S7 = ceil(S7);
 b7 = S7 * Kn;
 I7 = I6;
 %Vds7 = sqrt((2*I7)/b7) - Vtp;
@@ -145,7 +145,7 @@ W7 = S7 * L * 1e6;
 W8 = W5;
 
 W = [W1 W2 W3 W4 W5 W6 W7 W8]
-Iref = I6;
+Iref = I5;
 I7   = I6;
 I = [I3*1e6 I4*1e6 I5*1e6 I6*1e6 I7*1e6 Iref*1e6] %uA
 

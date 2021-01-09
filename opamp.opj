@@ -19,14 +19,14 @@
          ".\opamp-pspicefiles\schematic1\opamp.sim"
         (DisplayName "SCHEMATIC1-opamp")
         (Type "PSpice Profile")))
-    (Folder "Model Libraries"
-      (Sort User)
-      (File ".\opamp-pspicefiles\opamp.lib"
-        (Type "PSpiceLibrary")
-        (DisplayName ".\opamp-pspicefiles\opamp.lib")))
     (Folder "Stimulus Files"
       (Sort User))
     (Folder "Include Files"
+      (Sort User))
+    (Folder "Model Libraries"
+      (File ".\opamp-pspicefiles\opamp.lib"
+        (DisplayName ".\opamp-pspicefiles\opamp.lib")
+        (Type "PSpiceLibrary"))
       (Sort User)))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
