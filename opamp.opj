@@ -19,14 +19,14 @@
          ".\opamp-pspicefiles\schematic1\opamp.sim"
         (DisplayName "SCHEMATIC1-opamp")
         (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User)
+      (File ".\opamp-pspicefiles\opamp.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\opamp-pspicefiles\opamp.lib")))
     (Folder "Stimulus Files"
       (Sort User))
     (Folder "Include Files"
-      (Sort User))
-    (Folder "Model Libraries"
-      (File ".\opamp-pspicefiles\opamp.lib"
-        (DisplayName ".\opamp-pspicefiles\opamp.lib")
-        (Type "PSpiceLibrary"))
       (Sort User)))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
@@ -37,6 +37,26 @@
       (FullPartName "VAC.Normal")
       (LibraryName
          "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (VPULSE
+      (FullPartName "VPULSE.Normal")
+      (LibraryName
+         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (PARAM
+      (FullPartName "PARAM.Normal")
+      (LibraryName
+         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\SPECIAL.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName
+         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (MbreakN
+      (FullPartName "MbreakN.Normal")
+      (LibraryName
+         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
       (DeviceIndex "0"))
     (VDC
       (FullPartName "VDC.Normal")
