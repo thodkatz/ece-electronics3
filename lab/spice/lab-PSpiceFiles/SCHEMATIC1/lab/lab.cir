@@ -1,0 +1,21 @@
+** Profile: "SCHEMATIC1-lab"  [ D:\repos\ece-electronics3\lab\lab-pspicefiles\schematic1\lab.sim ] 
+
+** Creating circuit file "lab.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../lab-pspicefiles/lab.lib" 
+* From [PSPICE NETLIST] section of C:\Users\vash\AppData\Roaming\SPB_16.6\cdssetup\OrCAD_PSpice/16.6.0/PSpice.ini file:
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.TRAN  0 40ms 30ms 
+.STEP LIN PARAM r 1k 101k 20k 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+.END
