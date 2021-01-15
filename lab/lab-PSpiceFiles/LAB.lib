@@ -1,0 +1,33 @@
+* PSpice Model Editor - Version 16.6.0
+
+*$
+*-------------------------------------------------------------------------------
+* Library of diode model parameters
+*
+* This is a reduced version of PSpice's diode model library.
+* You are welcome to make as many copies of it as you find convenient.
+*
+* The parameters in this model library were derived from the data sheets for
+* each part.  Most parts were characterized using the Parts option.
+* Devices can also be characterized without Parts as follows:
+*	IS		nominal leakage current
+*	RS		for zener diodes: nominal small-signal impedance
+*			at specified operating current
+*	IB		for zener diodes: set to nominal leakage current
+*	IBV		for zener diodes: at specified operating current
+*			IBV is adjusted to give the rated zener voltage
+*
+*
+*** Zener Diodes ***
+*
+* "A" suffix zeners have the same parameters (e.g., 1N750A has the same
+* parameters as 1N750)
+*
+*
+.model D1N750	D(Is=880.5E-18 Rs=.25 Ikf=0 N=1 Xti=3 Eg=1.11 Cjo=175p M=.5516
++		Vj=.75 Fc=.5 Isr=1.859n Nr=2 Bv=7.5 Ibv=20.245m Nbv=1.6989
++		Ibvl=1.9556m Nbvl=14.976 Tbv1=-21.277u)
+*		Motorola	pid=1N750	case=DO-35
+*		89-9-18 gjg
+*		Vz = 4.7 @ 20mA, Zz = 300 @ 1mA, Zz = 12.5 @ 5mA, Zz =2.6  @ 20mA
+*$
